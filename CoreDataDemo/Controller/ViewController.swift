@@ -19,11 +19,11 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        people = CoreDataManager.shared.fetchAllPerson()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        people = CoreDataManager.shared.fetchAllPerson()
     }
 
     private func clearTextField() {
@@ -49,12 +49,6 @@ class ViewController: UIViewController {
             clearTextField()
         }
     }
-    
-    @IBAction func onNextViewClicked(_ sender: Any) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SecondViewController")
-        navigationController?.pushViewController(vc, animated: true)
-//        present(vc, animated: true, completion: nil)
-    }
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -69,6 +63,26 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }
         cell.configCell(withPerson: people[indexPath.row])
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let viewController = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "EditInfoViewController") as? EditInfoViewController else {
+            return
+        }
+        viewController.person = people[indexPath.row]
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let isSuccess = CoreDataManager.shared.deleteObject(manageObject: people[indexPath.row])
+            if isSuccess {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            } else {
+                Alert.showErrorAlert(withMessage: "error")
+            }
+        }
     }
 }
 

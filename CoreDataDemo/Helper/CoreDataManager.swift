@@ -14,9 +14,15 @@ class CoreDataManager {
 
     static let shared = CoreDataManager()
 
+    private func getContext() -> NSManagedObjectContext {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        }
+        return appDelegate.persistentContainer.viewContext
+    }
+
     func fetchAllPerson() -> [NSManagedObject] {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return [] }
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = getContext()
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Person")
 
         do {
@@ -28,10 +34,7 @@ class CoreDataManager {
     }
 
     func savePerson(firstName: String, lastName: String, age: Int) -> NSManagedObject? {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return nil
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = getContext()
         guard let entity = NSEntityDescription.entity(forEntityName: "Person", in: managedContext) else {
             Alert.showErrorAlert(withMessage: "Cant get entity")
             return nil
@@ -48,5 +51,33 @@ class CoreDataManager {
             Alert.showErrorAlert(withMessage: error.localizedDescription)
         }
         return nil
+    }
+
+    func updatePerson(withObjectId objectId: NSManagedObjectID, firstName: String, lastName: String, age: Int) -> Bool {
+        let managedContext = getContext()
+        let objectUpdate = managedContext.object(with: objectId)
+        objectUpdate.setValue(firstName, forKey: "firstName")
+        objectUpdate.setValue(lastName, forKey: "lastName")
+        objectUpdate.setValue(age, forKey: "age")
+        do {
+            try managedContext.save()
+        } catch let error {
+            print(error.localizedDescription)
+            return false
+        }
+        return true
+    }
+
+    func deleteObject(manageObject: NSManagedObject) -> Bool {
+        let managedContext = getContext()
+        let objectDelete = managedContext.object(with: manageObject.objectID)
+        managedContext.delete(objectDelete)
+        do {
+            try managedContext.save()
+        } catch let error {
+            print(error.localizedDescription)
+            return false
+        }
+        return true
     }
 }

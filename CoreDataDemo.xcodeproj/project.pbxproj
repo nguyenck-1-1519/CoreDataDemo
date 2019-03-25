@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		612A551722487BFF00F06DAC /* EditInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612A551622487BFF00F06DAC /* EditInfoViewController.swift */; };
 		613C317C22436F8D00935CE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613C317B22436F8D00935CE1 /* AppDelegate.swift */; };
 		613C317E22436F8D00935CE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613C317D22436F8D00935CE1 /* ViewController.swift */; };
 		613C318122436F8D00935CE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 613C317F22436F8D00935CE1 /* Main.storyboard */; };
@@ -16,10 +17,10 @@
 		61B09C6B22448B8000E0E0C6 /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B09C6A22448B8000E0E0C6 /* TextTableViewCell.swift */; };
 		61B09C6F22448F5100E0E0C6 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B09C6E22448F5100E0E0C6 /* Alert.swift */; };
 		61B09C712244957000E0E0C6 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B09C702244957000E0E0C6 /* CoreDataManager.swift */; };
-		61B09C732244991F00E0E0C6 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B09C722244991F00E0E0C6 /* SecondViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		612A551622487BFF00F06DAC /* EditInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInfoViewController.swift; sourceTree = "<group>"; };
 		613C317822436F8D00935CE1 /* CoreDataDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		613C317B22436F8D00935CE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		613C317D22436F8D00935CE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -31,7 +32,6 @@
 		61B09C6A22448B8000E0E0C6 /* TextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
 		61B09C6E22448F5100E0E0C6 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		61B09C702244957000E0E0C6 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		61B09C722244991F00E0E0C6 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				613C317D22436F8D00935CE1 /* ViewController.swift */,
-				61B09C722244991F00E0E0C6 /* SecondViewController.swift */,
+				612A551622487BFF00F06DAC /* EditInfoViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -167,10 +167,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				61B09C712244957000E0E0C6 /* CoreDataManager.swift in Sources */,
+				612A551722487BFF00F06DAC /* EditInfoViewController.swift in Sources */,
 				613C317E22436F8D00935CE1 /* ViewController.swift in Sources */,
 				613C318422436F8D00935CE1 /* CoreDataDemo.xcdatamodeld in Sources */,
 				61B09C6B22448B8000E0E0C6 /* TextTableViewCell.swift in Sources */,
-				61B09C732244991F00E0E0C6 /* SecondViewController.swift in Sources */,
 				61B09C6F22448F5100E0E0C6 /* Alert.swift in Sources */,
 				613C317C22436F8D00935CE1 /* AppDelegate.swift in Sources */,
 			);

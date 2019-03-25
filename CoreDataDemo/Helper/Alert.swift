@@ -20,10 +20,11 @@ class Alert {
         return window
     }()
 
-    static func showErrorAlert(withMessage message: String) {
+    static func showErrorAlert(withMessage message: String, okHandle: (() -> Void)? = nil) {
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
             window.isHidden = true
+            okHandle?()
         }
         alertController.addAction(okAction)
         DispatchQueue.main.async {
