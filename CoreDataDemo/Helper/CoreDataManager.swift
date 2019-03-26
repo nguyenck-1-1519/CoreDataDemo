@@ -34,6 +34,18 @@ class CoreDataManager {
         return []
     }
 
+    func fetchAllBooks() -> [Book] {
+        let managedContext = getContext()
+        let fetchRequest = NSFetchRequest<Book>(entityName: "Book")
+
+        do {
+            return try managedContext.fetch(fetchRequest)
+        } catch let error {
+            Alert.showErrorAlert(withMessage: error.localizedDescription)
+        }
+        return []
+    }
+
     func savePerson(firstName: String, lastName: String, age: Int) -> Person? {
         let managedContext = getContext()
         let person = Person(context: managedContext)
@@ -48,6 +60,22 @@ class CoreDataManager {
             Alert.showErrorAlert(withMessage: error.localizedDescription)
         }
         return nil
+    }
+
+    func addBook(title: String, price: Float, person: Person) {
+        let managedContext = getContext()
+        let book = Book(context: managedContext)
+        book.title = title
+        book.price = price
+        book.owner = person
+        let books  = person.mutableSetValue(forKey: #keyPath(Person.own))
+        books.add(book)
+
+        do {
+            try managedContext.save()
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
 
     func updatePerson(withObjectId objectId: NSManagedObjectID, firstName: String, lastName: String, age: Int) -> Bool {

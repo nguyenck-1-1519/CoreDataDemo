@@ -26,7 +26,7 @@ class TextTableViewCell: UITableViewCell {
     }
 
     func configCell(withBook book: Book) {
-        contentLabel.text = "\(book.title) -- \(book.price)"
+        contentLabel.text = "\(book.title ?? "") -- \(book.price)"
     }
 }
 

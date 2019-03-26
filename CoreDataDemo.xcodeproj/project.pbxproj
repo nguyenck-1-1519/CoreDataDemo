@@ -17,6 +17,7 @@
 		61B09C6B22448B8000E0E0C6 /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B09C6A22448B8000E0E0C6 /* TextTableViewCell.swift */; };
 		61B09C6F22448F5100E0E0C6 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B09C6E22448F5100E0E0C6 /* Alert.swift */; };
 		61B09C712244957000E0E0C6 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B09C702244957000E0E0C6 /* CoreDataManager.swift */; };
+		61F1983E224A0CE900B0197C /* BooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F1983D224A0CE900B0197C /* BooksViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		61B09C6A22448B8000E0E0C6 /* TextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
 		61B09C6E22448F5100E0E0C6 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		61B09C702244957000E0E0C6 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		61F1983D224A0CE900B0197C /* BooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			children = (
 				613C317D22436F8D00935CE1 /* ViewController.swift */,
 				612A551622487BFF00F06DAC /* EditInfoViewController.swift */,
+				61F1983D224A0CE900B0197C /* BooksViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				61B09C712244957000E0E0C6 /* CoreDataManager.swift in Sources */,
+				61F1983E224A0CE900B0197C /* BooksViewController.swift in Sources */,
 				612A551722487BFF00F06DAC /* EditInfoViewController.swift in Sources */,
 				613C317E22436F8D00935CE1 /* ViewController.swift in Sources */,
 				613C318422436F8D00935CE1 /* CoreDataDemo.xcdatamodeld in Sources */,

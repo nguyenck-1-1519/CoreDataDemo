@@ -22,6 +22,12 @@ class ViewController: UIViewController {
         people = CoreDataManager.shared.fetchAllPerson()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        people = CoreDataManager.shared.fetchAllPerson()
+//        tableView.reloadData()
+    }
+
     private func clearTextField() {
         firstNameTextfield.text = ""
         lastNameTextfield.text = ""
@@ -44,6 +50,10 @@ class ViewController: UIViewController {
             tableView.reloadData()
             clearTextField()
         }
+    }
+    @IBAction func onGoToAllBookClicked(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BooksViewController")
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

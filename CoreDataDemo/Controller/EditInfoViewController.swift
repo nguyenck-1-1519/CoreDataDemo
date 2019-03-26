@@ -13,8 +13,11 @@ class EditInfoViewController: UIViewController {
     @IBOutlet weak var firstNameTextfield: UITextField!
     @IBOutlet weak var lastNameTextfield: UITextField!
     @IBOutlet weak var ageTextfield: UITextField!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var titleTextfield: UITextField!
+    @IBOutlet weak var priceTextfield: UITextField!
 
-    var person: NSManagedObject!
+    var person: Person!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +46,53 @@ class EditInfoViewController: UIViewController {
             }
         } else {
             Alert.showErrorAlert(withMessage: "update fail")
+        }
+    }
+
+    @IBAction func onAddButtonClicked(_ sender: Any) {
+        guard let title = titleTextfield.text, !title.isEmpty,
+            let priceString = priceTextfield.text, !priceString.isEmpty,
+            let price = Float(priceString) else {
+            Alert.showErrorAlert(withMessage: "plz fill all info before adding")
+            return
+        }
+        CoreDataManager.shared.addBook(title: title, price: price, person: person)
+        tableView.reloadData()
+        titleTextfield.text = ""
+        priceTextfield.text = ""
+    }
+}
+
+extension EditInfoViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let books = person.own?.allObjects else {
+            return 0
+        }
+        return books.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TextTableViewCell") as? TextTableViewCell else {
+            return UITableViewCell()
+        }
+        guard let books = person.own?.allObjects as? [Book] else {
+            return UITableViewCell()
+        }
+        cell.configCell(withBook: books[indexPath.row])
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            guard let books = person.own?.allObjects as? [Book] else {
+                return
+            }
+            let isSuccess = CoreDataManager.shared.deleteObject(manageObject: books[indexPath.row])
+            if isSuccess {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            } else {
+                Alert.showErrorAlert(withMessage: "error")
+            }
         }
     }
 }
