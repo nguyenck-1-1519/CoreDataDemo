@@ -21,15 +21,12 @@ class TextTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
-    func configCell(withPerson person: NSManagedObject) {
-        if let p = person as? Person {
-            print(p.age)
-        }
-        let firstName = person.value(forKey: "firstName") as? String
-        let lastName = person.value(forKey: "lastName") as? String
-        let age = person.value(forKey: "age") as? Int
-        contentLabel.text = "\(firstName ?? "") \(lastName ?? "") - \(age ?? 0)"
+    func configCell(withPerson person: Person) {
+        contentLabel.text = "\(person.firstName ?? "") \(person.lastName ?? "") - \(person.age)"
     }
 
+    func configCell(withBook book: Book) {
+        contentLabel.text = "\(book.title) -- \(book.price)"
+    }
 }
 

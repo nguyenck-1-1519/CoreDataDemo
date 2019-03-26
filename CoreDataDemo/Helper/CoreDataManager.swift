@@ -21,9 +21,9 @@ class CoreDataManager {
         return appDelegate.persistentContainer.viewContext
     }
 
-    func fetchAllPerson() -> [NSManagedObject] {
+    func fetchAllPerson() -> [Person] {
         let managedContext = getContext()
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Person")
+        let fetchRequest = NSFetchRequest<Person>(entityName: "Person")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "age", ascending: true)]
 
         do {
@@ -34,16 +34,12 @@ class CoreDataManager {
         return []
     }
 
-    func savePerson(firstName: String, lastName: String, age: Int) -> NSManagedObject? {
+    func savePerson(firstName: String, lastName: String, age: Int) -> Person? {
         let managedContext = getContext()
-        guard let entity = NSEntityDescription.entity(forEntityName: "Person", in: managedContext) else {
-            Alert.showErrorAlert(withMessage: "Cant get entity")
-            return nil
-        }
-        let person = NSManagedObject(entity: entity, insertInto: managedContext)
-        person.setValue(firstName, forKey: "firstName")
-        person.setValue(lastName, forKey: "lastName")
-        person.setValue(age, forKeyPath: "age")
+        let person = Person(context: managedContext)
+        person.age = Int16(age)
+        person.firstName = firstName
+        person.lastName = lastName
 
         do {
             try managedContext.save()
