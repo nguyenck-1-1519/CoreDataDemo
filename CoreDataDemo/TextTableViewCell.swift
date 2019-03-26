@@ -22,6 +22,9 @@ class TextTableViewCell: UITableViewCell {
     }
 
     func configCell(withPerson person: NSManagedObject) {
+        if let p = person as? Person {
+            print(p.age)
+        }
         let firstName = person.value(forKey: "firstName") as? String
         let lastName = person.value(forKey: "lastName") as? String
         let age = person.value(forKey: "age") as? Int
@@ -29,3 +32,4 @@ class TextTableViewCell: UITableViewCell {
     }
 
 }
+

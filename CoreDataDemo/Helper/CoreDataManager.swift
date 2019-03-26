@@ -24,6 +24,7 @@ class CoreDataManager {
     func fetchAllPerson() -> [NSManagedObject] {
         let managedContext = getContext()
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Person")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "age", ascending: true)]
 
         do {
             return try managedContext.fetch(fetchRequest)
@@ -74,10 +75,10 @@ class CoreDataManager {
         managedContext.delete(objectDelete)
         do {
             try managedContext.save()
+            return true
         } catch let error {
             print(error.localizedDescription)
             return false
         }
-        return true
     }
 }

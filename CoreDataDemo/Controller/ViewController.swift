@@ -22,10 +22,6 @@ class ViewController: UIViewController {
         people = CoreDataManager.shared.fetchAllPerson()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
     private func clearTextField() {
         firstNameTextfield.text = ""
         lastNameTextfield.text = ""
@@ -78,6 +74,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             let isSuccess = CoreDataManager.shared.deleteObject(manageObject: people[indexPath.row])
             if isSuccess {
+                people.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
             } else {
                 Alert.showErrorAlert(withMessage: "error")
